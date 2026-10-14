@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: j3timelap-postgres
+    environment:
+      POSTGRES_DB: j3timelap
+      POSTGRES_USER: ${POSTGRES_USER:-timelap}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-timelap}
+    ports:
+      - "5432:5432"
+    volumes:
+      - j3timelap_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-timelap} -d j3timelap"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: j3timelap-backend
+    environment:
+      QUARKUS_PROFILE: prod
+      POSTGRES_URL: jdbc:postgresql://postgres:5432/j3timelap
+      POSTGRES_USER: ${POSTGRES_USER:-timelap}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-timelap}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: j3timelap-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  j3timelap_postgres_data:

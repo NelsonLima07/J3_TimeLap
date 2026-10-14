@@ -1,0 +1,60 @@
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: mat.$orange-palette,
+        tertiary: mat.$cyan-palette,
+      ),
+      typography: (
+        brand-family: 'Orbitron, sans-serif',
+        plain-family: 'Rajdhani, sans-serif',
+      ),
+      density: 0,
+    )
+  );
+}
+
+body {
+  color-scheme: dark;
+  margin: 0;
+  min-height: 100vh;
+  background-color: #080b10;
+  color: #eaf0f8;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 14% 16%, rgba(255, 106, 0, 0.2), transparent 30%),
+      radial-gradient(circle at 88% 10%, rgba(0, 194, 255, 0.15), transparent 28%),
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.018) 0 2px,
+        transparent 2px 18px
+      ),
+      linear-gradient(135deg, #070a10 0%, #0d121b 52%, #06080d 100%);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+mat-icon,
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+}
