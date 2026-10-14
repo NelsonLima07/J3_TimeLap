@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="J3 TimeLap">
+  <defs>
+    <linearGradient id="speed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a00" />
+      <stop offset="100%" stop-color="#00c2ff" />
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="14" fill="#080b10" />
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#ff6a00" stroke-width="2" opacity="0.7" />
+
+  <!-- Checkered flag -->
+  <g transform="translate(42 8)" opacity="0.9">
+    <rect width="14" height="14" fill="#ffffff" />
+    <rect x="0" y="0" width="7" height="7" fill="#000000" />
+    <rect x="7" y="7" width="7" height="7" fill="#000000" />
+  </g>
+
+  <!-- Speed arc -->
+  <path
+    d="M12 46 A24 24 0 0 1 52 46"
+    fill="none"
+    stroke="url(#speed)"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+
+  <!-- Racing needle -->
+  <path d="M32 46 L45 26" stroke="#e10600" stroke-width="4" stroke-linecap="round" />
+
+  <circle cx="32" cy="46" r="4" fill="#eaf0f8" />
+
+  <text
+    x="32"
+    y="39"
+    text-anchor="middle"
+    font-family="Orbitron, Arial, sans-serif"
+    font-size="15"
+    font-weight="800"
+    fill="#ff6a00"
+    letter-spacing="-1"
+  >
+    J3
+  </text>
+</svg>

@@ -1,0 +1,46 @@
+<mat-sidenav-container class="shell-container">
+  <mat-sidenav class="sidenav" mode="side" opened>
+    <div class="menu-brand">
+      <mat-icon>speed</mat-icon>
+      <div>
+        <strong>J3 TimeLap</strong>
+        <span>Controle da prova</span>
+      </div>
+    </div>
+
+    <mat-nav-list>
+      @for (item of menuItems; track item.route) {
+        <a
+          mat-list-item
+          [routerLink]="item.route"
+          routerLinkActive="active-link"
+          #rla="routerLinkActive"
+          [attr.aria-current]="rla.isActive ? 'page' : null"
+        >
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </a>
+      }
+    </mat-nav-list>
+
+    <div class="menu-footer">
+      <span>{{ user()?.displayName || 'Piloto' }}</span>
+      <button mat-stroked-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Sair
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <mat-toolbar class="topbar">
+      <span class="brand">J3 TimeLap</span>
+      <span class="spacer"></span>
+      <span class="pill">Pit wall</span>
+    </mat-toolbar>
+
+    <main class="page">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
